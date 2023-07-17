@@ -14,7 +14,5 @@ jobs:
       - run: npm ci
 
   using_reusable_workflow:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: adysis14/CICD-stages-node.js-project/.github/workflows/build.yml@main
+    uses: adysis14/CICD-stages-node.js-project/.github/workflows/build.yml@main
       
