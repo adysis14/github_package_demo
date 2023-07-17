@@ -1,0 +1,15 @@
+{
+  "name": "@adysis14/github_package_demo",
+  "version": "1.0.0",
+  "description": "Just a demo repository for publishing Github Package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "repository": {
+    "url": "git://github.com/adysis14/github_package_demo.git"
+  },
+  "license": "ISC"
+}
