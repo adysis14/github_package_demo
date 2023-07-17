@@ -3,6 +3,10 @@ name: Reusable Workflow User
 on:
   workflow_dispatch:
   
+env:
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,4 +27,5 @@ jobs:
    
   Sonarcloud:
     name: Sonarcloud scan
-    uses: adysis14/CICD-stages-node.js-project/.github/workflows/sonarcloud.yml@main 
+    uses: adysis14/CICD-stages-node.js-project/.github/workflows/sonarcloud.yml@main
+
