@@ -1,1 +1,20 @@
-name : 
+name: Reusable Workflow User
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci
+
+  using_reusable_workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: adysis14/CICD-stages-node.js-project/.github/workflows/build.yml@main
+      
