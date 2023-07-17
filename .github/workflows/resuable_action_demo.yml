@@ -20,4 +20,7 @@ jobs:
   Scan_workflow:
     name: Gitleaks scan
     uses: adysis14/CICD-stages-node.js-project/.github/workflows/Gitleaks_scan.yml@main  
-      
+   
+  Sonarcloud:
+    name: Sonarcloud scan
+    uses: adysis14/CICD-stages-node.js-project/.github/workflows/sonarcloud.yml@main 
