@@ -6,9 +6,8 @@ const packageJsonPath = './package.json';
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
 const currentVersion = packageJson.version;
 
-// Analyze commit history or any other logic to determine the version bump type
-// In this example, we'll simply default to 'patch'
-const versionBump = 'patch';
+//  default to 'patch'
+const versionBump = 'major';
 
 // Function to increment the version number based on the bump type
 function incrementVersion(version, bump) {
