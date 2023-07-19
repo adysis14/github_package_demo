@@ -11,7 +11,7 @@ on:
     types:
       - created
   schedule:
-    - cron: '0 0 * * *' # Run every day at midnight
+    - cron: '0 0 * * *' # Run every day at midnight.
   repository_dispatch:
     types:
       - dependency-update
