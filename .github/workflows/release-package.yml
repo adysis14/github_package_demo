@@ -2,7 +2,19 @@ name: Node.js Package
 
 on:
   push:
-    branches: [main]
+    branches:
+     - main
+     - develop
+    tags:
+     - '*'
+  release:
+    types:
+      - created
+  schedule:
+    - cron: '0 0 * * *' # Run every day at midnight
+  repository_dispatch:
+    types:
+      - dependency-update
 
 jobs:
   publish-gpr:
