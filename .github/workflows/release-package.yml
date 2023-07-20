@@ -3,10 +3,10 @@ name: Node.js Package
 on:
   push:
     branches:
-     - main
-     - develop
+      - main
+      - develop
     tags:
-     - '*'
+      - '*'
   release:
     types:
       - created
@@ -17,7 +17,19 @@ on:
       - dependency-update
 
 jobs:
-  publish-gpr:
+  # CI Job
+  build-and-test_CI:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci
+      - run: npm test
+
+  # CD Job
+  publish-gpr_CD:
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -29,12 +41,7 @@ jobs:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
       - run: npm ci
-      - name: Determine and Increment Version
-        run: node increment-version.js
-    
-     # - run: npm version major --no-git-tag-version 
-      #minor, patch
-      
+      - run: npm version major --no-git-tag-version
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
