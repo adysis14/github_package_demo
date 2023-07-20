@@ -15,7 +15,8 @@ on:
   repository_dispatch:
     types:
       - dependency-update
-
+env:
+  REPO_ACCESS_TOKEN: ${{ secrets.REPO_DISPATCH_ACCESS_TOKEN }}
 jobs:
   # CI Job
   build-and-test_CI:
