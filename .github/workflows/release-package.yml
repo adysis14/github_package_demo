@@ -3,31 +3,53 @@ name: Node.js Package
 on:
   push:
     branches:
-      - main
+      - feature/*
       - develop
-    tags:
-      - '*'
+      - release/*
+  pull_request:
+    types: [labeled]
   release:
-    types:
-      - created
-  schedule:
-    - cron: '0 0 * * *' # Run every day at midnight.
-  repository_dispatch:
-    types:
-      - dependency-update
+
 env:
   REPO_ACCESS_TOKEN: ${{ secrets.REPO_DISPATCH_ACCESS_TOKEN }}
+
 jobs:
+  automerge:
+    if: github.event.label.name == 'release'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Extract branch name
+      uses: mdecoleman/pr-branch-name@1.0.0
+      id: extract_branch
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: yanamura/git-flow-merge-action@v1
+      with: 
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ steps.extract_branch.outputs.branch }}
+  
   # CI Job
   build-and-test_CI:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npm ci
-      #- run: npm test
+      - name: Checkout master
+        run: git checkout master
+
+      - name: Checkout develop
+        run: git checkout develop
+
+      - name: Checkout feature
+        run: git checkout feature/${{github.event.pull_request.head.ref}}
+
+      - name: Build
+        run: |
+          npm ci
+          echo "Building..."
+
+      - name: Test
+        run: |
+          echo "Testing..."
 
   # CD Job
   publish-gpr_CD:
