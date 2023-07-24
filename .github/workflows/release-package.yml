@@ -26,7 +26,9 @@ jobs:
         run: git checkout develop
 
       - name: Checkout feature
-        run: git checkout feature/${{github.event.pull_request.head.ref}}
+        run: |
+          echo ${{github.event.pull_request.head.ref}}
+          git checkout feature/${{github.event.pull_request.head.ref}}
 
       - name: Build
         run: |
@@ -64,6 +66,7 @@ jobs:
 
     - name: Create a release branch
       run: |
+        echo ${{ github.run_number }}
         git checkout -b release/v${{ github.run_number }}
         git push origin release/v${{ github.run_number }}
         
