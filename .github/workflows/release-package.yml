@@ -14,7 +14,6 @@ env:
   REPO_ACCESS_TOKEN: ${{ secrets.REPO_DISPATCH_ACCESS_TOKEN }}
 
 jobs:
-  
   # CI Job
   build-and-test_CI:
     runs-on: ubuntu-latest
@@ -115,4 +114,4 @@ jobs:
       - run: npm version major --no-git-tag-version
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }
