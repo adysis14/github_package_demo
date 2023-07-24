@@ -19,8 +19,8 @@ jobs:
   build-and-test_CI:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
-        run: git checkout master
+      - name: Checkout master/main
+        run: git checkout main
 
       - name: Checkout develop
         run: git checkout develop
