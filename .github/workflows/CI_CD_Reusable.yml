@@ -1,0 +1,14 @@
+name: Reusable Workflow User
+
+on:
+  workflow_dispatch:
+
+jobs:
+  CI:
+    name: Running CI workflow
+    uses: adysis14/CICD-stages-node.js-project/.github/workflows/CI_workflow.yml@main
+    
+  CD:
+    name: Running CD workflow
+    uses: adysis14/CICD-stages-node.js-project/.github/workflows/CD_workflow.yml@main  
+   
