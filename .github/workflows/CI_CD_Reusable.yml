@@ -2,7 +2,9 @@ name: Reusable Workflow User
 
 on:
   workflow_dispatch:
-
+permissions:
+      packages: write
+      contents: read
 jobs:
   CI:
     name: Running CI workflow
