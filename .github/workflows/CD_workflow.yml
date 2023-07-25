@@ -5,6 +5,7 @@ on:
     workflows: ["CI_workflow"]
     types:
       - completed
+      
 #  pull_request:
 #    branches:
 #     - feature/*
