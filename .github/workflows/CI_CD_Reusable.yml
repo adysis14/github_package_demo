@@ -4,11 +4,12 @@ on:
     branches:
       - develop
       - 'release/*'
+      
 permissions:
   packages: write
   contents: read
+  
 jobs:
-
   CI:
     name: Running CI workflow
     uses: adysis14/CICD-stages-node.js-project/.github/workflows/CI_workflow.yml@main
