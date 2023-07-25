@@ -1,16 +1,32 @@
-name: Reusable Workflow User
-
+name: Gitflow Workflow
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - develop
+      - 'release/*'
 permissions:
-      packages: write
-      contents: read
+  packages: write
+  contents: read
 jobs:
   CI:
     name: Running CI workflow
-    uses: adysis14/CICD-stages-node.js-project/.github/workflows/CI_workflow.yml@main
-    
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: CI Workflow
+        uses: adysis14/CICD-stages-node.js-project/.github/workflows/CI_workflow.yml@main
+
+
   CD:
     name: Running CD workflow
-    uses: adysis14/CICD-stages-node.js-project/.github/workflows/CD_workflow.yml@main  
-   
+    needs: CI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: CD Workflow
+        uses: adysis14/CICD-stages-node.js-project/.github/workflows/CD_workflow.yml@main
+
