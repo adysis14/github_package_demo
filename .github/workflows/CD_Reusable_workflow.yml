@@ -2,7 +2,7 @@ name: CD_workflow
 
 on:
   workflow_run:
-    workflows: ["Workflow File 1"]
+    workflows: ["CI_workflow"]
     types:
       - completed
 #  pull_request:
