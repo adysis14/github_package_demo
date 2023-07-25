@@ -1,0 +1,21 @@
+name: CD_workflow
+
+on:
+  workflow_run:
+    workflows: ["Workflow File 1"]
+    types:
+      - completed
+#  pull_request:
+#    branches:
+#     - feature/*
+#      - develop
+#      - release/*
+      
+permissions:
+  packages: write
+  contents: read
+  
+jobs:
+  CD:
+    name: Running CD workflow
+    uses: adysis14/CICD-stages-node.js-project/.github/workflows/CD_workflow.yml@main
