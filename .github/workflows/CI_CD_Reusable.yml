@@ -1,11 +1,11 @@
 name: Gitflow Workflow
 
 on:
-  workflow_dispatch:
-  push:
+  pull_request:
     branches:
+      - feature/*
       - develop
-      - 'release/*'
+      - release/*
       
 permissions:
   packages: write
