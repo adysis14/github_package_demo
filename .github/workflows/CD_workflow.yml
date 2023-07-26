@@ -36,4 +36,4 @@ jobs:
        # additional-approved-words: ''
        # additional-denied-words: ''
       env:
-       ISSUE_TOKEN: ${{ REPO_DISPATCH_ACCESS_TOKEN }}
+       ISSUE_TOKEN: ${{ secrets.REPO_DISPATCH_ACCESS_TOKEN }}
