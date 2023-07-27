@@ -1,7 +1,7 @@
 name: CI_workflow
 
 on:
-  pull_request_target:
+  pull_request_review:
     branches:
       - main
       - feature/*
