@@ -3,37 +3,29 @@ name: CD_workflow
 on:
   pull_request:
     types:
-      - closed
-  #    - synchronize
+      - review_requested
     branches:
-      - main
+      - main      #test
       - feature/*
       - develop
       - release/*
       
-permissions:
-  packages: write
-  contents: read
-  
 jobs:
+  approve-manual-deployment:
+    name: Approve manual deployment
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/github-script@v3
+      with:
+        script: |
+          if (github.event.pull_request.review_comments.some(comment => comment.state === 'approved')) {
+            echo 'Deployment approved! Proceeding for it....'
+          } else {
+            echo 'Deployment not approved! Exiting....'
+          }
+
   CD:
     name: Running CD workflow
     needs: approve-manual-deployment
     uses: adysis14/CICD-stages-node.js-project/.github/workflows/CD_workflow.yml@main
-    
-  approve-manual-deployment:
-    name: Manual Approval for Deployment
-    runs-on: ubuntu-latest
-    steps:
-    - uses: trstringer/manual-approval@v1
-      with:
-        secret: ${{ github.TOKEN }}
-        approvers: adysis14
-        minimum-approvals: 1
-        issue-title: "Deploying package"
-        issue-body: "Please approve or deny the deployment of Package"
-       # exclude-workflow-initiator-as-approver: false
-       # additional-approved-words: ''
-       # additional-denied-words: ''
-      env:
-       ISSUE_TOKEN: ${{ secrets.REPO_DISPATCH_ACCESS_TOKEN }}
