@@ -5,10 +5,9 @@ on:
     types:
       - assigned
     branches:
-      - main
       - feature/*
       - develop
-     # - release/*
+      - release/*
       
 jobs:
   CI:
