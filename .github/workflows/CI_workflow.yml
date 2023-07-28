@@ -5,6 +5,7 @@ on:
     types:
       - assigned
     branches:
+      - main    #test
       - feature/*
       - develop
       - release/*
