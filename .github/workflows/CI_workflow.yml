@@ -3,7 +3,7 @@ name: CI_workflow
 on:
   pull_request:
     types:
-      - review_requested
+      - assigned
     branches:
       - main
       - feature/*
