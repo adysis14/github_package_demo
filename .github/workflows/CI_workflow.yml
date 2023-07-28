@@ -3,7 +3,8 @@ name: CI_workflow
 on:
   pull_request:
     types:
-      - assigned
+     # - assigned
+      - ready_for_review
     branches:
       - main    #test
       - feature/*
